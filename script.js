@@ -68,7 +68,7 @@ function game() {
     }
 
     if (scores['wins'] > scores['losses']) {
-        alert('You win!');
+        alert(`You win! with a score of ${scores['wins']} to ${scores['losses']}.`);
     } else if (scores['wins'] < scores['losses']) {
         alert(`You lose with a score of ${scores['wins']} to ${scores['losses']}.`);
     } else {
