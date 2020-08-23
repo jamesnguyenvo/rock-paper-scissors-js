@@ -1,3 +1,8 @@
+const scoreboard = document.querySelector('.score');
+var scoreValues = document.createElement('p');
+const buttons = document.querySelectorAll('.choice');
+// const playerChoiceButton = document.querySelectorAll('.choice');
+
 function computerPlay() {
     let choice = Math.floor((Math.random() * 3))
     if (choice == 0) {
@@ -42,12 +47,16 @@ function updateScore(result, scores) {
     } else {
         scores['losses'] += 1;
     }
+    scoreValues.textContent = 'wins: ' + scores['wins'] +
+                              ' losses: ' + scores['losses'] +
+                              ' draws: ' + scores['draws'];
+    scoreboard.appendChild(scoreValues);
 }
 
 function game() { 
     let playerChoice, computerChoice;
-    let scores = {'wins': 0, 'losses': 0, 'draws': 0}
-
+    let scores = {wins: 0, losses: 0, draws: 0};
+    
     for (let i = 0; i < 5; i++) {
         let properInput = false;
         
@@ -77,4 +86,4 @@ function game() {
 
 }
 
-game();
+// game();
