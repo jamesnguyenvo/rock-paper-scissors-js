@@ -1,7 +1,6 @@
 const scoreboard = document.querySelector('.score');
 var scoreValues = document.createElement('p');
-const buttons = document.querySelectorAll('.choice');
-// const playerChoiceButton = document.querySelectorAll('.choice');
+const playerChoiceButton = document.querySelectorAll('.choice');
 
 function computerPlay() {
     let choice = Math.floor((Math.random() * 3))
@@ -57,33 +56,43 @@ function game() {
     let playerChoice, computerChoice;
     let scores = {wins: 0, losses: 0, draws: 0};
     
-    for (let i = 0; i < 5; i++) {
-        let properInput = false;
+    playerChoiceButton.forEach((button) => {
+        button.addEventListener('click', function () {
+            playerChoice = button.id;
+            computerChoice = computerPlay();
+            result = playRound(playerChoice, computerChoice);
+            updateScore(result, scores);
+        });
+    });
+    
+
+    // for (let i = 0; i < 5; i++) {
+    //     let properInput = false;
         
-        while (!(properInput)) {
-            playerChoice = prompt('Type in your choice of rock, paper, or scissors.');
-            if (playerChoice === 'rock' || playerChoice === 'paper' || playerChoice === 'scissors') {
-                properInput = true;
-            } else {
-                alert('Please enter a valid input.');
-            }
-        }
+    //     while (!(properInput)) {
+    //         playerChoice = prompt('Type in your choice of rock, paper, or scissors.');
+    //         if (playerChoice === 'rock' || playerChoice === 'paper' || playerChoice === 'scissors') {
+    //             properInput = true;
+    //         } else {
+    //             alert('Please enter a valid input.');
+    //         }
+    //     }
 
-        // computer makes choice
-        computerChoice = computerPlay();
-        // compare choices
-        result = playRound(playerChoice, computerChoice);
-        updateScore(result, scores);
-    }
+    //     // computer makes choice
+    //     computerChoice = computerPlay();
+    //     // compare choices
+    //     result = playRound(playerChoice, computerChoice);
+    //     updateScore(result, scores);
+    // }
 
-    if (scores['wins'] > scores['losses']) {
-        alert(`You win! with a score of ${scores['wins']} to ${scores['losses']}.`);
-    } else if (scores['wins'] < scores['losses']) {
-        alert(`You lose with a score of ${scores['wins']} to ${scores['losses']}.`);
-    } else {
-        alert('Draw!');
-    }
+    // if (scores['wins'] > scores['losses']) {
+    //     alert(`You win! with a score of ${scores['wins']} to ${scores['losses']}.`);
+    // } else if (scores['wins'] < scores['losses']) {
+    //     alert(`You lose with a score of ${scores['wins']} to ${scores['losses']}.`);
+    // } else {
+    //     alert('Draw!');
+    // }
 
 }
 
-// game();
+game();
